@@ -69,7 +69,3 @@ export function balance(arg0) {
 
 }
 
-export function __wbindgen_throw(ptr, len) {
-    throw new Error(getStringFromWasm(ptr, len));
-}
-

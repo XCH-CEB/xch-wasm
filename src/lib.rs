@@ -8,14 +8,14 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub fn balance(eqn: &str) -> String {
-    match handler_api::<i32>(eqn) {
+    match handler_api::<isize>(eqn) {
         Ok((c, v)) => get_ans(&c, &v),
         Err((ErrorCases::ParserError(e), _)) => e,
         Err((e, _)) => format!("{:?}", e),
     }
 }
 
-fn get_ans(c: &ChemicalEquation, vecs: &[Vec<i32>]) -> String {
+fn get_ans(c: &ChemicalEquation, vecs: &[Vec<isize>]) -> String {
     let mut s: String = String::new();
     s.push_str("[OUTPUT]:\n");
     for i in 0..c.sum {

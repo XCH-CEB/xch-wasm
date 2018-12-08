@@ -1,6 +1,3 @@
-extern crate lib_xch;
-extern crate wasm_bindgen;
-
 use lib_xch::api::handler::handler_api;
 use lib_xch::api::handler::ErrorCases;
 use lib_xch::api::structs::ChemicalEquation;

@@ -13,12 +13,15 @@ function getUint8Memory() {
     return cachegetUint8Memory;
 }
 
+let WASM_VECTOR_LEN = 0;
+
 function passStringToWasm(arg) {
 
     const buf = cachedTextEncoder.encode(arg);
     const ptr = wasm.__wbindgen_malloc(buf.length);
     getUint8Memory().set(buf, ptr);
-    return [ptr, buf.length];
+    WASM_VECTOR_LEN = buf.length;
+    return ptr;
 }
 
 const lTextDecoder = typeof TextDecoder === 'undefined' ? require('util').TextDecoder : TextDecoder;
@@ -49,7 +52,8 @@ function getUint32Memory() {
 * @returns {string}
 */
 export function balance(arg0) {
-    const [ptr0, len0] = passStringToWasm(arg0);
+    const ptr0 = passStringToWasm(arg0);
+    const len0 = WASM_VECTOR_LEN;
     const retptr = globalArgumentPtr();
     try {
         wasm.balance(retptr, ptr0, len0);

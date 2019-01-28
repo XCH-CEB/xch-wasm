@@ -1,14 +1,11 @@
-use lib_xch::api::handler::handler_api;
-use lib_xch::api::handler::ErrorCases;
-use lib_xch::api::structs::ChemicalEquation;
+use lib_xch::public::{handler::Handler, structs::ChemicalEquation};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn balance(eqn: &str) -> String {
-    match handler_api::<isize>(eqn) {
+pub fn balance(equ: &str) -> String {
+    match Handler::<isize>::new(&equ).handle() {
         Ok((c, v)) => get_ans(&c, &v),
-        Err((ErrorCases::ParserError(e), _)) => e,
-        Err((e, _)) => format!("{:?}", e),
+        Err(e) => e.to_string(),
     }
 }
 

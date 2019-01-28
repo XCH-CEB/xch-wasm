@@ -9,4 +9,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wasm-bindgen = "0.2"
-lib_xch = "^0.11"
+lib_xch = "^0.12"

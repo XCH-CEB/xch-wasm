@@ -9,7 +9,7 @@ pub fn balance(equ: &str) -> String {
     }
 }
 
-fn get_ans(c: &ChemicalEquation, vecs: &[Vec<isize>]) -> String {
+fn get_ans(c: &ChemicalEquation, vecs: &[Vec<&isize>]) -> String {
     let mut s: String = String::new();
     s.push_str("[OUTPUT]:\n");
     for i in 0..c.sum {
